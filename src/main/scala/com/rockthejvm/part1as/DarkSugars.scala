@@ -23,7 +23,7 @@ object DarkSugars {
   }
 
   // with hofs
-  val anIncrementedList = List(1,2,3).map { x =>
+  val anIncrementedList = List(1, 2, 3).map { x =>
     // code block
     x + 1
   }
@@ -48,9 +48,9 @@ object DarkSugars {
   val aSweeterThread = new Thread(() => println("Hi, Scala"))
 
   // 3 - methods ending in a : are RIGHT-ASSOCIATIVE
-  val aList = List(1,2,3)
+  val aList = List(1, 2, 3)
   val aPrependedList = 0 :: aList // aList.::(0)
-  val aBigList = 0 :: 1 :: 2 :: List(3,4) // List(3,4).::(2).::(1).::(0)
+  val aBigList = 0 :: 1 :: 2 :: List(3, 4) // List(3,4).::(2).::(1).::(0)
 
   class MyStream[T] {
     infix def -->:(value: T): MyStream[T] = this // impl not important
@@ -72,20 +72,25 @@ object DarkSugars {
   }
 
   // 5 - infix types
+
   import scala.annotation.targetName
+
   @targetName("Arrow") // for more readable bytecode + Java interop
   infix class -->[A, B]
+
   val compositeType: Int --> String = new -->[Int, String]
 
   // 6 - update()
-  val anArray = Array(1,2,3,4)
+  val anArray = Array(1, 2, 3, 4)
   anArray.update(2, 45)
   anArray(2) = 45 // same
 
   // 7 - mutable fields
   class Mutable {
     private var internalMember: Int = 0
+
     def member = internalMember // "getter"
+
     def member_=(value: Int): Unit =
       internalMember = value // "setter"
   }
@@ -103,8 +108,8 @@ object DarkSugars {
   val callWithOneArgs = methodWithVarargs(78)
   val callWithTwoArgs = methodWithVarargs(12, 34)
 
-  val aCollection = List(1,2,3,4)
-  val callWithDynamicArgs = methodWithVarargs(aCollection*)
+  val aCollection = List(1, 2, 3, 4)
+  val callWithDynamicArgs = methodWithVarargs(aCollection *)
 
   def main(args: Array[String]): Unit = {
 
